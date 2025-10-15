@@ -1,31 +1,40 @@
 """
 Clustering Module
 
-Statistical clustering algorithms for trader segmentation.
-Implements multiple clustering approaches with validation.
+Enhanced statistical clustering algorithms for trader segmentation.
+Implements multiple clustering approaches with comprehensive validation,
+stability metrics, and probabilistic membership.
 """
 
 import numpy as np
 import pandas as pd
 from typing import Dict, List, Tuple, Optional
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering
+from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering, SpectralClustering
 from sklearn.decomposition import PCA
-from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
+from sklearn.metrics import (
+    silhouette_score, silhouette_samples,
+    calinski_harabasz_score, davies_bouldin_score
+)
+from sklearn.model_selection import KFold
+from scipy.spatial.distance import cdist
+from scipy.cluster.hierarchy import dendrogram, linkage
 import warnings
 warnings.filterwarnings('ignore')
 
 
 class TraderSegmentation:
     """
-    Multi-algorithm clustering system for trader segmentation.
+    Enhanced multi-algorithm clustering system for trader segmentation.
     
     Implements:
-    - K-Means clustering
+    - K-Means clustering with stability validation
     - DBSCAN (density-based clustering)
-    - Hierarchical clustering
-    - Automatic optimal cluster selection
-    - Statistical validation
+    - Hierarchical clustering with dendrogram analysis
+    - Spectral clustering
+    - Automatic optimal cluster selection with multiple metrics
+    - Probabilistic cluster membership
+    - Statistical validation and stability metrics
     """
     
     def __init__(self, n_clusters: int = 5, random_state: int = 42):
@@ -46,6 +55,72 @@ class TraderSegmentation:
         self.cluster_centers_ = None
         self.labels_ = None
         self.feature_names = None
+        self.stability_score_ = None
+        
+    def calculate_stability_score(self, X: np.ndarray, n_splits: int = 5) -> float:
+        """
+        Calculate clustering stability using cross-validation.
+        
+        Parameters:
+        -----------
+        X : np.ndarray
+            Scaled feature matrix
+        n_splits : int
+            Number of CV splits
+            
+        Returns:
+        --------
+        float
+            Average stability score across splits
+        """
+        kf = KFold(n_splits=n_splits, shuffle=True, random_state=self.random_state)
+        stability_scores = []
+        
+        for train_idx, test_idx in kf.split(X):
+            X_train, X_test = X[train_idx], X[test_idx]
+            
+            # Fit on train
+            kmeans = KMeans(n_clusters=self.n_clusters, random_state=self.random_state, n_init=10)
+            kmeans.fit(X_train)
+            
+            # Predict on test
+            labels_test = kmeans.predict(X_test)
+            
+            # Calculate silhouette on test set
+            if len(set(labels_test)) > 1:
+                score = silhouette_score(X_test, labels_test)
+                stability_scores.append(score)
+        
+        return np.mean(stability_scores) if stability_scores else 0.0
+        
+    def get_probabilistic_membership(self, X: np.ndarray) -> np.ndarray:
+        """
+        Get probabilistic cluster membership for each sample.
+        
+        Parameters:
+        -----------
+        X : np.ndarray
+            Feature matrix
+            
+        Returns:
+        --------
+        np.ndarray
+            Matrix of shape (n_samples, n_clusters) with membership probabilities
+        """
+        X_scaled = self.scaler.transform(X)
+        
+        if self.cluster_centers_ is None:
+            raise ValueError("Model not fitted yet. Call fit_* method first.")
+        
+        # Calculate distances to all cluster centers
+        distances = cdist(X_scaled, self.cluster_centers_, metric='euclidean')
+        
+        # Convert distances to probabilities using softmax
+        # Use negative distances (closer = higher probability)
+        exp_neg_distances = np.exp(-distances)
+        probabilities = exp_neg_distances / exp_neg_distances.sum(axis=1, keepdims=True)
+        
+        return probabilities
         
     def find_optimal_clusters(self, X: np.ndarray, max_clusters: int = 10) -> int:
         """
@@ -91,7 +166,7 @@ class TraderSegmentation:
     
     def fit_kmeans(self, X: np.ndarray, optimize_k: bool = True) -> 'TraderSegmentation':
         """
-        Fit K-Means clustering model.
+        Fit K-Means clustering model with stability validation.
         
         Parameters:
         -----------
@@ -112,14 +187,18 @@ class TraderSegmentation:
         self.model = KMeans(
             n_clusters=self.n_clusters,
             random_state=self.random_state,
-            n_init=10,
+            n_init=20,
             max_iter=300
         )
         
         self.labels_ = self.model.fit_predict(X_scaled)
         self.cluster_centers_ = self.model.cluster_centers_
         
+        # Calculate stability
+        self.stability_score_ = self.calculate_stability_score(X_scaled)
+        
         print(f"K-Means fitted with {self.n_clusters} clusters")
+        print(f"Stability score: {self.stability_score_:.4f}")
         
         return self
     

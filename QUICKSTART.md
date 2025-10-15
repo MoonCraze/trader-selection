@@ -15,15 +15,6 @@ pip install -r requirements.txt
 
 ## 5-Minute Tutorial
 
-### Step 1: Generate Sample Data
-
-```bash
-cd examples
-python generate_sample_data.py
-```
-
-This creates sample transaction data in `data/raw/sample_transactions.csv`.
-
 ### Step 2: Run Complete Analysis
 
 ```bash

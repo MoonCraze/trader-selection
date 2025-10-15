@@ -70,15 +70,9 @@ pip install -r requirements.txt
 
 ### Basic Usage
 
-#### Generate Sample Data
-```bash
-cd examples
-python generate_sample_data.py
-```
-
 #### Run Complete Analysis
 ```bash
-python complete_analysis_pipeline.py --data ../data/raw/sample_transactions.csv --output ../outputs
+python complete_analysis_pipeline.py --data ../data/traders_202510140811.csv --output ../outputs
 ```
 
 ### Python API Usage
@@ -118,7 +112,6 @@ predictor.train_ensemble(X_train, y_train)
 predictor.evaluate(X_test, y_test)
 
 # 5. ML-based Persona Prediction (requires true labels)
-# If you have labeled data (e.g., from generate_sample_data.py)
 if 'true_archetype' in df.columns:
     persona_predictor = HighPotentialPredictor(
         random_state=42, 
@@ -169,7 +162,6 @@ trader-selection/
 │       ├── evaluation.py              # Statistical validation
 │       └── visualization.py           # Plotting and visualization
 ├── examples/
-│   ├── generate_sample_data.py       # Sample data generator
 │   ├── complete_analysis_pipeline.py # End-to-end pipeline
 │   └── persona_prediction_demo.py    # Persona prediction demonstration
 ├── data/

@@ -17,7 +17,6 @@ trader-selection/
 │   ├── evaluation.py              # Statistical validation (490 lines)
 │   └── visualization.py           # Plotting tools (366 lines)
 ├── examples/                      # Usage examples
-│   ├── generate_sample_data.py   # Sample data generator
 │   └── complete_analysis_pipeline.py  # End-to-end demo
 ├── notebooks/                     # Jupyter notebooks
 │   └── example_analysis.ipynb    # Interactive tutorial
@@ -198,7 +197,6 @@ trader-selection/
 
 ```bash
 cd examples
-python generate_sample_data.py
 python complete_analysis_pipeline.py
 ```
 

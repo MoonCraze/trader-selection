@@ -410,7 +410,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--data',
         type=str,
-        default='../data/raw/sample_transactions.csv',
+        default='../data/traders_202510140811.csv',
         help='Path to transaction data CSV'
     )
     parser.add_argument(

@@ -15,7 +15,7 @@ import numpy as np
 from trader_analysis import FeatureEngineer, HighPotentialPredictor
 
 
-def run_persona_prediction_demo(data_path: str = '../data/raw/sample_transactions.csv'):
+def run_persona_prediction_demo(data_path: str = '../data/traders_202510140811.csv'):
     """
     Run a simple demonstration of persona prediction.
     
@@ -36,7 +36,6 @@ def run_persona_prediction_demo(data_path: str = '../data/raw/sample_transaction
     # Check for true labels
     if 'true_archetype' not in df.columns:
         print("\n   ERROR: No 'true_archetype' column found!")
-        print("   This demo requires labeled data from generate_sample_data.py")
         return
     
     # Feature engineering
@@ -135,7 +134,7 @@ if __name__ == '__main__':
     import argparse
     
     parser = argparse.ArgumentParser(description='Demonstrate persona prediction')
-    parser.add_argument('--data', default='../data/raw/sample_transactions.csv',
+    parser.add_argument('--data', default='..data/traders_202510140811.csv',
                        help='Path to transaction data CSV')
     args = parser.parse_args()
     
