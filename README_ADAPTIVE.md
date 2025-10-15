@@ -4,7 +4,7 @@
 
 A sophisticated, research-grade framework for discovering and analyzing trader personas using unsupervised machine learning. This system replaces traditional rule-based classification with intelligent pattern discovery that learns directly from trading behavior data.
 
-## 🎯 Overview
+## Overview
 
 This framework implements an **Intelligent Data-Driven Persona System** that:
 
@@ -15,7 +15,7 @@ This framework implements an **Intelligent Data-Driven Persona System** that:
 - **Tracks temporal evolution** of traders across personas over time
 - **Identifies career paths** and common progression patterns
 
-## 🌟 Key Features
+## Key Features
 
 ### 1. **Adaptive Persona Discovery**
 - Unsupervised clustering with multiple algorithms (K-Means, Hierarchical, DBSCAN)
@@ -39,7 +39,7 @@ This framework implements an **Intelligent Data-Driven Persona System** that:
 - Drift detection for emerging trader behaviors
 - Stability metrics and validation
 
-## 📊 System Architecture
+## System Architecture
 
 ```
 traders_202510140811.csv
@@ -73,7 +73,7 @@ traders_202510140811.csv
 └───────────────────────┘
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -130,7 +130,7 @@ transition_matrix = tracker.calculate_transition_matrix(historical_data)
 career_paths = tracker.identify_career_paths(historical_data)
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 trader-selection/
@@ -151,7 +151,7 @@ trader-selection/
 └── requirements.txt                   # Dependencies
 ```
 
-## 📈 Key Differences from Traditional Systems
+## Key Differences from Traditional Systems
 
 | Traditional Rule-Based | Adaptive Data-Driven |
 |------------------------|----------------------|
@@ -162,7 +162,7 @@ trader-selection/
 | Limited to expected patterns | Discovers unexpected behaviors |
 | Separate clustering & personas | Integrated approach |
 
-## 🔬 Methodology
+## Methodology
 
 ### Unsupervised Pattern Discovery
 1. **Multi-Algorithm Clustering**: Tests K-Means, Hierarchical, and DBSCAN
@@ -185,7 +185,7 @@ trader-selection/
 3. **Lifecycle Detection**: Activity trend analysis
 4. **Stability Metrics**: Entropy and transition frequency
 
-## 📊 Output Files
+## Output Files
 
 After running the analysis, you'll find:
 
@@ -199,7 +199,7 @@ After running the analysis, you'll find:
 - `performance_by_persona.png` - Performance comparisons
 - `analysis_summary.json` - Complete analysis metadata
 
-## 🎓 Advanced Features
+## Advanced Features
 
 ### Custom Feature Engineering
 
@@ -226,7 +226,7 @@ mixed = traders[traders['persona_confidence'] < 0.7]
 print(mixed[['address', 'persona', 'persona_confidence']])
 ```
 
-## 📚 Citation
+## Citation
 
 If you use this framework in your research, please cite:
 
@@ -239,11 +239,11 @@ If you use this framework in your research, please cite:
 }
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit pull requests or open issues for bugs and feature requests.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
@@ -255,4 +255,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**Built with ❤️ for the crypto trading community**
+**Built with care for the crypto trading community**

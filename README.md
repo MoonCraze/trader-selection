@@ -2,11 +2,11 @@
 
 A research-grade framework for statistical evaluation and segmentation of crypto wallet addresses using clustering, predictive modeling, and behavioral persona assignment.
 
-## 🎯 Overview
+## Overview
 
 This framework provides a comprehensive, statistically-rigorous approach to identifying high-potential crypto traders from transaction data. It combines machine learning, statistical validation, and domain expertise to segment traders into behavioral personas and predict future performance.
 
-## 📊 Key Features
+## Key Features
 
 ### 1. **Feature Engineering**
 - Profitability metrics (ROI, win rate, Sharpe ratio, Sortino ratio)
@@ -55,7 +55,7 @@ This framework provides a comprehensive, statistically-rigorous approach to iden
 - Correlation heatmaps
 - Comprehensive summary dashboards
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -148,7 +148,7 @@ This demonstrates:
 - Feature importance for persona classification
 - Comparison of predicted vs rule-based persona assignment
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 trader-selection/
@@ -175,7 +175,7 @@ trader-selection/
 └── README.md
 ```
 
-## 📈 Methodology
+## Methodology
 
 ### Statistical Approach
 
@@ -227,7 +227,7 @@ Models are trained with:
 - 5-fold cross-validation
 - Hyperparameter optimization
 
-## 📊 Output Files
+## Output Files
 
 After running the complete analysis pipeline, the following files are generated:
 
@@ -251,7 +251,7 @@ The framework includes comprehensive statistical validation:
 - **Correlation Analysis**: Pearson and Spearman correlations
 - **Cross-Validation**: K-fold stratified validation
 
-## 📚 Example Notebooks
+## Example Notebooks
 
 Coming soon: Jupyter notebooks demonstrating:
 - Exploratory data analysis
@@ -260,19 +260,19 @@ Coming soon: Jupyter notebooks demonstrating:
 - Hyperparameter tuning
 - Backtesting strategies
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit issues or pull requests.
 
-## 📄 License
+## License
 
 This project is open source and available under the MIT License.
 
-## 📧 Contact
+## Contact
 
 For questions or collaboration opportunities, please open an issue on GitHub.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 This framework was developed using best practices from:
 - Academic research in quantitative finance
