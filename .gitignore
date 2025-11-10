@@ -53,6 +53,10 @@ outputs/
 *.swo
 *~
 
+# Environment variables
+.env
+api/.env
+
 # OS
 .DS_Store
 Thumbs.db
