@@ -428,13 +428,13 @@ if __name__ == '__main__':
     parser.add_argument(
         '--data',
         type=str,
-        default='data/traders_202510140811.csv',
+        default='../data/traders_202510140811.csv',
         help='Path to traders CSV file'
     )
     parser.add_argument(
         '--output',
         type=str,
-        default='outputs',
+        default='../outputs',
         help='Output directory for results'
     )
     

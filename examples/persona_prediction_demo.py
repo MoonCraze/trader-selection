@@ -31,7 +31,7 @@ def run_persona_prediction_demo(data_path: str = '../data/traders_202510140811.c
     # Load data
     print("\n1. Loading transaction data...")
     df = pd.read_csv(data_path)
-    print(f"   Loaded {len(df)} transactions from {df['address'].nunique()} addresses")
+    print(f"   Loaded {len(df)} transactions from {df['wallet_address'].nunique()} addresses")
     
     # Check for true labels
     if 'true_archetype' not in df.columns:
@@ -134,7 +134,7 @@ if __name__ == '__main__':
     import argparse
     
     parser = argparse.ArgumentParser(description='Demonstrate persona prediction')
-    parser.add_argument('--data', default='..data/traders_202510140811.csv',
+    parser.add_argument('--data', default='../data/traders_202510140811.csv',
                        help='Path to transaction data CSV')
     args = parser.parse_args()
     
